@@ -1,0 +1,24 @@
+main
+{
+	const char sp=' ';
+	const char rt='\n';
+	int i;
+	int a[10];
+
+	for(i=0;i<10;i++)
+	{
+		a[i]=i;
+		if(i==5)
+		{
+			break;
+		}
+	}
+
+	for(i=0;i<10;i++)
+	{
+		write a[i];
+		write sp;
+	}
+	write rt;
+
+}

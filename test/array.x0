@@ -1,0 +1,29 @@
+main
+{
+	char sp;
+	char rt;
+	int i;
+	int j;
+	int a;
+	int b[2][5];
+	sp=' ';
+	rt='\n';
+	a=0;
+	for(i=0;i<2;i=i+1)
+	{
+		for(j=0;j<5;j=j+1)
+		{
+			b[i][j]=a++;
+		}
+	}
+	for(i=0;i<2;i=i+1)
+	{
+		for(j=0;j<5;j=j+1)
+		{
+			write b[i][j];
+			write sp;
+		}
+		write rt;
+	}
+	write b[b[0][0]][1];
+}

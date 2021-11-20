@@ -1,0 +1,40 @@
+main
+{
+	char sp;
+	char rt;
+	int a[100];
+	int i;
+	int j;
+
+	sp=' ';
+	rt='\n';
+	for(i=0;i<100;i++)
+		a[i]=1;
+
+	a[0]=0;
+	a[1]=0;
+	for(i=0;i<100;i++)
+	{
+		if(a[i]==1)
+		{
+			for(j=2;j<100;j++)
+			{
+				if(i*j<100)
+				{
+					a[i*j]=0;
+				}
+				if(i*j>=100)
+					break;
+			}
+		}
+	}
+
+	for(i=0;i<100;i++)
+	{
+		if(a[i]==1)
+		{
+			write i;
+			write sp;
+		}
+	}
+}
