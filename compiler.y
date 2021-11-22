@@ -126,34 +126,34 @@ const_dec:
                                             }
     ;
 
-    declaration_list:
-        declaration_list declaration_stat {} | {}
-    ;
+declaration_list:
+    declaration_list declaration_stat {} | {}
+;
 
-    declaration_stat:
-        type ID array_size SEMICOLON    {
-                                            if(strcmp($1,"int")==0){
-                                                instance_type=int_t;
-                                            }else if(strcmp($1,"char")==0){
-                                                instance_type=char_t;
-                                            }else if(strcmp($1,"bool")==0){
-                                                instance_type=bool_t;
-                                            }else if(strcmp($1,"real")==0){
-                                                instance_type=real_t;
-                                            }else{
-                                                instance_type=none;
-                                            }
-
-                                            if(is_array_rec==1){
-                                                strcpy(id,$2);
-                                                enter(variable);
-                                            }else
-                                            {
-                                                strcpy(id,$2);
-                                                enter(variable);
-                                            }
+declaration_stat:
+    type ID array_size SEMICOLON    {
+                                        if(strcmp($1,"int")==0){
+                                            instance_type=int_t;
+                                        }else if(strcmp($1,"char")==0){
+                                            instance_type=char_t;
+                                        }else if(strcmp($1,"bool")==0){
+                                            instance_type=bool_t;
+                                        }else if(strcmp($1,"real")==0){
+                                            instance_type=real_t;
+                                        }else{
                                             instance_type=none;
                                         }
+
+                                        if(is_array_rec==1){
+                                            strcpy(id,$2);
+                                            enter(variable);
+                                        }else
+                                        {
+                                            strcpy(id,$2);
+                                            enter(variable);
+                                        }
+                                        instance_type=none;
+                                    }
     ;
 
 array_size:

@@ -329,7 +329,7 @@ void interpret(GtkWidget* frame)
 			case 6:
 				if (s[t].ele_type == real_t)
 				{
-					code_error("top of the stack is a double so that we do not know if it is odd.");
+					code_error("The real variable is not applicable to the operator odd.");
 				}
 				if ((s[t].vi) % 2 == 0)
 					s[t].vi = 0;
@@ -340,7 +340,7 @@ void interpret(GtkWidget* frame)
 				t = t - 1;
 				if (s[t].ele_type == real_t || s[t + 1].ele_type == real_t)
 				{
-					code_error("tops of the stack are doubles so that we do not know if one is equals to another.");
+					code_error("The real variable is not applicable to the operator ==.");
 				}
 				if (s[t].vi == s[t + 1].vi)
 					s[t].vi = 1;
@@ -351,7 +351,7 @@ void interpret(GtkWidget* frame)
 				t = t - 1;
 				if (s[t].ele_type == real_t || s[t + 1].ele_type == real_t)
 				{
-					code_error("tops of the stack are doubles so that we do not know if one is equals to another.");
+					code_error("The real variable is not applicable to the operator !=.");
 				}
 				if (s[t].vi != s[t + 1].vi)
 					s[t].vi = 1;
@@ -506,7 +506,7 @@ void interpret(GtkWidget* frame)
 			case 17: 
 				if (s[t].ele_type == real_t)
 				{
-					code_error("top of the stack is a double so that we cannot write a charater.");
+					code_error("Cannot write a charater to a real variable.");
 				}
 				sprintf(out, "%c", s[t].vi);
 				gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(buffer),&start,&end);
@@ -516,7 +516,7 @@ void interpret(GtkWidget* frame)
 			case 18: 
 				if (s[t].ele_type == real_t)
 				{
-					code_error("top of the stack is a double so that we cannot write from a double address.");
+					code_error("The address of real value is not supported.");
 				}
 				if (s[s[t].vi].ele_type == real_t)
 				{
@@ -535,11 +535,11 @@ void interpret(GtkWidget* frame)
 			case 19: 
 				if (s[t].ele_type == real_t)
 				{
-					code_error("top of the stack is a double so that we cannot write a charater to an address.");
+					code_error("The value of a char is an integer, not real.");
 				}
 				if (s[s[t].vi].ele_type == real_t)
 				{
-					code_error("adr of the stack is a double so that we cannot write a charater.");
+					code_error("The value of a char is an integer, not real.");
 				}
 				sprintf(out, "%c", s[s[t].vi].vi);
 				gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(buffer),&start,&end);
@@ -550,7 +550,7 @@ void interpret(GtkWidget* frame)
 				t = t - 1;
 				if (s[t].ele_type == real_t || s[t + 1].ele_type == real_t)
 				{
-					code_error("tops of the stack are doubles so that one cannot mod another.");
+					code_error("Real variable do not support the operator mod.");
 				}
 				s[t].vi = s[t].vi % s[t + 1].vi;
 				break;
@@ -558,7 +558,7 @@ void interpret(GtkWidget* frame)
 				t = t - 1;
 				if (s[t].ele_type == real_t || s[t + 1].ele_type == real_t)
 				{
-					code_error("tops of the stack are doubles so that one cannot xor another.");
+					code_error("Real variable do not support the operator xor.");
 				}
 				s[t].vi = s[t].vi ^ s[t + 1].vi;
 				break;
@@ -566,7 +566,7 @@ void interpret(GtkWidget* frame)
 				t = t - 1;
 				if (s[t].ele_type == real_t || s[t + 1].ele_type == real_t)
 				{
-					code_error("tops of the stack are doubles so that one cannot and another.");
+					code_error("Real variable do not support the operator and.");
 				}
 				s[t].vi = s[t].vi && s[t + 1].vi;
 				break;
@@ -574,21 +574,21 @@ void interpret(GtkWidget* frame)
 				t = t - 1;
 				if (s[t].ele_type == real_t || s[t + 1].ele_type == real_t)
 				{
-					code_error("tops of the stack are doubles so that one cannot or another.");
+					code_error("Real variable do not support the operator or.");
 				}
 				s[t].vi = s[t].vi || s[t + 1].vi;
 				break;
 			case 24: 
 				if (s[t].ele_type == real_t)
 				{
-					code_error("top of the stack is double so that one cannot do |not|.");
+					code_error("Real variable do not support the operator not.");
 				}
 				s[t].vi = !s[t].vi;
 				break;
 			case 25: 
 				if (s[t].ele_type == real_t)
 				{
-					code_error("tops of the stack are doubles so that one cannot be writen.");
+					code_error("Real values do not support this operator.");
 				}
 				sprintf(out, "%s", s[t].vi == 0 ? "false" : "true");
 				gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(buffer),&start,&end);
@@ -605,7 +605,7 @@ void interpret(GtkWidget* frame)
 			{
 				if (s[t].ele_type == real_t)
 				{
-					code_error("top of the stack is a double so that we cannot lod from a double address.");
+					code_error("The value of a bool is an integer, not real.");
 				}
 				if (s[t].vi >= table[array_id].address + list_len(table[array_id].array_size))
 				{
@@ -642,7 +642,7 @@ void interpret(GtkWidget* frame)
 			{
 				if (s[t - 1].ele_type == real_t)
 				{
-					code_error("top of the stack is a double so that we cannot lod from a double address.");
+					code_error("The address of real value is not supported.");
 				}
 				if (s[t - 1].vi >= table[array_id].address + list_len(table[array_id].array_size))
 				{
@@ -718,7 +718,7 @@ void interpret(GtkWidget* frame)
 		case jpc:
 			if (s[t].ele_type == real_t)
 			{
-				code_error("top of the stack is a double so that we do not know if it is equals to zero.");
+				code_error("Unable to tell whether a real variable equals to zero.");
 			}
 			if (s[t].vi == 0)
 				p = i.a;
