@@ -3,6 +3,7 @@
 #include "stdio.h"
 #include "string.h"
 #include "stdlib.h"
+
 int line_count=0;
 char err_msg[70];
 
@@ -140,6 +141,7 @@ REAL_NUM ([0-9])+[.][0-9]+
     }
 
 %%
+
 int yywrap(void)
 {
     return 1;

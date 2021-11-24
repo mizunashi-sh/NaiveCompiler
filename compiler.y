@@ -697,11 +697,9 @@ get_code_addr:
 void yyerror(char *s)
 {
     err++;
-    char text[500];
-    sprintf(text, "%s in line %d\n",s,line_count);
     GtkWidget *dialog;
     dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR,
-                GTK_BUTTONS_OK, text);
+                GTK_BUTTONS_OK, s);
     gtk_window_set_title(GTK_WINDOW(dialog), "Compiler Error");
     gtk_dialog_run(GTK_DIALOG(dialog));
     gtk_widget_destroy(dialog);
